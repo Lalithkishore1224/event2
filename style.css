@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: black;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Particle Background */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* 3D Animated Background */
+#vanta-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Animated Gradient Overlay */
+.gradient-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+  opacity: 0.7;
+  z-index: 1;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Wavy Background */
+.wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #ffffff;
+  opacity: 0.1;
+  clip-path: path("M0,96L48,128C96,160,192,224,288,224C384,224,480,160,576,160C672,160,768,224,864,240C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z");
+  z-index: 1;
+  animation: waveAnimation 20s linear infinite;
+}
+
+.wave2 {
+  top: 15%;
+  opacity: 0.08;
+  animation: waveAnimation 15s linear infinite reverse;
+  animation-delay: -5s;
+}
+
+.wave3 {
+  top: 25%;
+  opacity: 0.07;
+  animation: waveAnimation 30s linear infinite;
+  animation-delay: -2s;
+}
+
+@keyframes waveAnimation {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-element {
+  position: absolute;
+  background: rgba(235, 88, 8, 0.15);
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: floatAnimation 15s ease-in-out infinite;
+}
+
+#element1 {
+  width: 120px;
+  height: 120px;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+#element2 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  left: 80%;
+  animation-delay: -3s;
+}
+
+#element3 {
+  width: 150px;
+  height: 150px;
+  top: 70%;
+  left: 15%;
+  animation-delay: -6s;
+}
+
+#element4 {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  left: 75%;
+  animation-delay: -9s;
+}
+
+#element5 {
+  width: 70px;
+  height: 70px;
+  top: 40%;
+  left: 40%;
+  animation-delay: -12s;
+}
+
+@keyframes floatAnimation {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(20px, -20px) rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: translate(-10px, 30px) rotate(-5deg) scale(0.95);
+  }
+  75% {
+    transform: translate(-25px, -15px) rotate(3deg) scale(1.02);
+  }
+}
+
+/* Parallax Container */
+.parallax-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.leaf {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  transition: transform 0.3s ease-out;
+  animation: pulsate 3s ease-in-out infinite;
+}
+
+.leaf1 {
+  height: 100px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.leaf2 {
+    height: 100px;
+  top: 18%;
+  right: 5%;
+  animation-delay: -1.5s;
+}
+
+@keyframes pulsate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(5deg);
+  }
+}
+
+/* Content Container */
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  z-index: 10;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(235, 88, 8, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heading Styling */
+.form-heading {
+  font-size: 28px;
+  color: #eb5808;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+}
+
+.text-animation {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textFadeIn 0.5s ease forwards;
+}
+
+@keyframes textFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Styling */
+form {
+  width: 100%;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.input-icon-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #eb5808;
+  font-size: 16px;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  transform: translateY(-50%);
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  pointer-events: none;
+  font-size: 16px;
+  color: rgba(241, 56, 10, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px 15px 15px 50px;
+  border: 1px solid white;
+  border-radius: 11px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  background: #000;
+  box-shadow: 0 0 8px white;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(235, 88, 8, 0.5);
+  border: 1px solid #eb5808;
+}
+
+.input-field:focus ~ .input-icon,
+.input-field:not(:placeholder-shown) ~ .input-icon {
+  color: #eb5808;
+  transform: translateY(-50%) scale(1.2);
+}
+
+.input-field:focus ~ .placeholder,
+.input-field:not(:placeholder-shown) ~ .placeholder {
+  top: 0;
+  left: 50px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #eb5808;
+  background: black;
+  padding: 0 5px;
+  border-left: 1px solid #eb5808;
+  border-right: 1px solid #eb5808;
+  transform: translateY(-50%);
+}
+
+.focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #eb5808;
+  transition: width 0.4s;
+}
+
+.input-field:focus ~ .focus-border,
+.input-field:not(:placeholder-shown) ~ .focus-border {
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #eb5808;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.toggle-password:hover {
+  color: #ffffff;
+}
+
+/* Password Strength Meter */
+.password-strength {
+  margin-top: 8px;
+  display: none;
+}
+
+.strength-meter {
+  height: 4px;
+  background-color: #ddd;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.strength-meter-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0;
+  background-color: #eb5808;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+.strength-text {
+  font-size: 12px;
+  color: #eb5808;
+  text-align: right;
+}
+
+/* Button Styling */
+.btn {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #eb5808;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 11px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: buttonFadeIn 0.5s ease 0.8s forwards;
+}
+
+@keyframes buttonFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.btn:hover {
+  box-shadow: 0 0 15px rgba(235, 88, 8, 0.5);
+  transform: translateY(-3px);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 2;
+}
+
+.btn.loading .btn-text {
+  opacity: 0;
+}
+
+.btn.loading .btn-spinner {
+  opacity: 1;
+  visibility: visible;
+  animation: spin 0.8s linear infinite, scale 0.3s ease forwards;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-heading {
+    font-size: 24px;
+  }
+
+  .leaf {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-heading {
+    font-size: 20px;
+  }
+
+  .leaf {
+    width: 40px;
+  }
+
+  .input-field {
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+  }
+
+  .input-icon {
+    left: 12px;
+    font-size: 14px;
+  }
+
+  .placeholder {
+    left: 40px;
+    font-size: 14px;
+  }
+
+  .input-field:focus ~ .placeholder,
+  .input-field:not(:placeholder-shown) ~ .placeholder {
+    left: 40px;
+  }
+}
+
+/* Animation for form groups - applied by JS */
+@for $i from 1 through 10 {
+  .form-group:nth-child(#{$i}) {
+    animation-delay: #{$i * 0.1}s;
+  }
+}
+
+/* Text animation delay - applied by JS */
+@for $i from 1 through 14 {
+  .text-animation:nth-child(#{$i}) {
+    animation-delay: #{$i * 0.05}s;
+  }
+}
