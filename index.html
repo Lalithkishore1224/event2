@@ -1,553 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enhanced Register Form</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
+    <div class="particles-container" id="particles-js"></div>
 
-  <!-- 3D Animated Background -->
-  <div id="vanta-background"></div>
-
-  <!-- Animated Gradient Overlay -->
-  <div class="gradient-overlay"></div>
-
-  <!-- Wavy Background -->
- 
-  <!-- Floating Elements -->
-  <div class="floating-elements">
-    <div class="floating-element" id="element1"></div>
-    <div class="floating-element" id="element2"></div>
-    <div class="floating-element" id="element3"></div>
-    <div class="floating-element" id="element4"></div>
-    <div class="floating-element" id="element5"></div>
-  </div>
-
-  <!-- Leaves with parallax effect -->
-  <div class="parallax-container">
-    <img src="logo3.png" alt="Leaf 1" class="leaf leaf1" data-parallax-speed="0.2">
-    <img src="ig.png" alt="Leaf 2" class="leaf leaf2" data-parallax-speed="0.1">
-  </div>
-
-  <!-- Content Container -->
-  <div class="content-container">
-    <div class="form-container">
-      <h1 class="form-heading">
-        <span class="text-animation">C</span>
-        <span class="text-animation">R</span>
-        <span class="text-animation">E</span>
-        <span class="text-animation">A</span>
-        <span class="text-animation">T</span>
-        <span class="text-animation">E</span>
-        <span class="text-animation"> </span>
-        <span class="text-animation">A</span>
-        <span class="text-animation">C</span>
-        <span class="text-animation">C</span>
-        <span class="text-animation">O</span>
-        <span class="text-animation">U</span>
-        <span class="text-animation">N</span>
-        <span class="text-animation">T</span>
-      </h1>
-
-      <form id="registrationForm">
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-user input-icon"></i>
-            <input type="text" id="name" placeholder="" required autocomplete="off" class="input-field">
-            <span class="placeholder">Enter your full name</span>
-            <div class="focus-border">
-              <i></i>
+    <div class="registration-container">
+        <header class="form-header">
+            <img src="logo3.png">
+            <div class="logo-container">
+                <div class="logo logo-left" id="logo1">
+                    <div class="logo-placeholder"><img src="ig.png" alt="ignite" style="height: 100px;"></div>
+                </div>
+                
+                <h1 class="event-title">Event 2025</h1>
+                <div class="logo logo-right" id="logo2">
+                    <div class="logo-placeholder"><img src="ig.png" alt="ignite" style="height: 100px;"></div>
+                </div>
             </div>
-          </div>
+            <p class="event-subtitle">Registration Form</p>
+        </header>
+
+        <div class="form-wrapper">
+            <div class="form-progress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Personal Info</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Academic Details</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Team Details</div>
+                </div>
+            </div>
+
+            <form id="registration-form" class="registration-form">
+                <!-- Step 1: Personal Information -->
+                <div class="form-step active" data-step="1">
+                    <h2 class="form-section-title">Personal Information</h2>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name" class="floating-label">Full Name</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email" class="floating-label">Email Address</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" required>
+                        <label for="password" class="floating-label">Password</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="next-button">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Academic Details -->
+                <div class="form-step" data-step="2">
+                    <h2 class="form-section-title">Academic Details</h2>
+                    <div class="form-group">
+                        <input type="text" id="roll_number" name="roll_number" required>
+                        <label for="roll_number" class="floating-label">Roll Number</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="section" name="section" required>
+                        <label for="section" class="floating-label">Section</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="department" name="department" required>
+                        <label for="department" class="floating-label">Department</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="referral_roll_no" name="referral_roll_no">
+                        <label for="referral_roll_no" class="floating-label">Referral Roll Number (optional)</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="prev-button"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="next-button">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Team Details -->
+                <div class="form-step" data-step="3">
+                    <h2 class="form-section-title">Team Details</h2>
+                    <div class="form-group">
+                        <input type="text" id="team_code" name="team_code">
+                        <label for="team_code" class="floating-label">Enter Team Code (to join)</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="team_name" name="team_name">
+                        <label for="team_name" class="floating-label">Or Create a New Team</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the terms and conditions</label>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="prev-button"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="submit" class="submit-button">Submit Registration</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="success-message" id="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <h3>Registration Successful!</h3>
+                <p>Thank you for registering for our event.</p>
+                <div id="infoBox" class="event-details"></div>
+            </div>
         </div>
 
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-envelope input-icon"></i>
-            <input type="email" id="email" placeholder="" required autocomplete="off" class="input-field">
-            <span class="placeholder">Your email address</span>
-            <div class="focus-border">
-              <i></i>
+        <footer class="form-footer">
+            <p>&copy; 2025 Ignite . All Rights Reserved.</p>
+            <div class="footer-logos">
+                <div class="logo small logo-left"><img src="logo3.png" style="height: 100px;"></div>
+                <div class="logo small logo-right"><img src="ig.png" style="height: 100px;"></div>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-lock input-icon"></i>
-            <input type="password" id="password" placeholder="" required autocomplete="off" class="input-field">
-            <span class="placeholder">Create a password</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-            <i class="fas fa-eye-slash toggle-password"></i>
-          </div>
-          <div class="password-strength">
-            <div class="strength-meter">
-              <div class="strength-meter-fill"></div>
-            </div>
-            <div class="strength-text"></div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-id-card input-icon"></i>
-            <input type="text" id="roll_number" placeholder="" required autocomplete="off" class="input-field">
-            <span class="placeholder">Your roll number</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-layer-group input-icon"></i>
-            <input type="text" id="section" placeholder="" required autocomplete="off" class="input-field">
-            <span class="placeholder">Your section</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-building input-icon"></i>
-            <input type="text" id="department" placeholder="" required autocomplete="off" class="input-field">
-            <span class="placeholder">Your department</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-user-plus input-icon"></i>
-            <input type="text" id="referral_roll_no" placeholder="" autocomplete="off" class="input-field">
-            <span class="placeholder">Referral's roll number (optional)</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-key input-icon"></i>
-            <input type="text" id="team_code" placeholder="" autocomplete="off" class="input-field">
-            <span class="placeholder">Enter team code (to join)</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-icon-wrapper">
-            <i class="fas fa-users input-icon"></i>
-            <input type="text" id="team_name" placeholder="" autocomplete="off" class="input-field">
-            <span class="placeholder">New team name</span>
-            <div class="focus-border">
-              <i></i>
-            </div>
-          </div>
-        </div>
-
-        <button type="submit" class="btn" id="btn">
-          <span class="btn-text">Create Account</span>
-          <span class="btn-spinner"></span>
-        </button>
-      </form>
+        </footer>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-  <script >document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Vanta.js background
-    VANTA.NET({
-      el: "#vanta-background",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0xeb5808,
-      backgroundColor: 0x000000,
-      points: 10.00,
-      maxDistance: 20.00,
-      spacing: 16.00
-    });
-  
-    // Initialize particles.js
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 50,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#eb5808"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 5
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": true,
-          "anim": {
-            "enable": true,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "enable": true,
-            "speed": 2,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#eb5808",
-          "opacity": 0.2,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 1,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 600
-          }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "bubble"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 400,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 250,
-            "size": 0,
-            "duration": 2,
-            "opacity": 0,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 400,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
-    });
-  
-    // Apply animation delays to text elements
-    const textElements = document.querySelectorAll('.text-animation');
-    textElements.forEach((el, index) => {
-      el.style.animationDelay = `${index * 0.05}s`;
-    });
-  
-    // Apply animation delays to form groups
-    const formGroups = document.querySelectorAll('.form-group');
-    formGroups.forEach((el, index) => {
-      el.style.animationDelay = `${index * 0.1}s`;
-    });
-  
-    // Password visibility toggle
-    const togglePassword = document.querySelector('.toggle-password');
-    const passwordInput = document.getElementById('password');
-  
-    if (togglePassword && passwordInput) {
-      togglePassword.addEventListener('click', function() {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-      });
-    }
-  
-    // Password strength meter
-    const passwordStrength = document.querySelector('.password-strength');
-    const strengthMeterFill = document.querySelector('.strength-meter-fill');
-    const strengthText = document.querySelector('.strength-text');
-  
-    if (passwordInput && passwordStrength && strengthMeterFill && strengthText) {
-      passwordInput.addEventListener('input', function() {
-        const value = passwordInput.value;
-  
-        if (value.length > 0) {
-          passwordStrength.style.display = 'block';
-  
-          // Check password strength
-          let strength = 0;
-          let feedback = '';
-  
-          // Length check
-          if (value.length >= 8) {
-            strength += 25;
-          }
-  
-          // Uppercase check
-          if (/[A-Z]/.test(value)) {
-            strength += 25;
-          }
-  
-          // Number check
-          if (/[0-9]/.test(value)) {
-            strength += 25;
-          }
-  
-          // Special character check
-          if (/[^A-Za-z0-9]/.test(value)) {
-            strength += 25;
-          }
-  
-          // Update strength meter
-          strengthMeterFill.style.width = `${strength}%`;
-  
-          // Change color based on strength
-          if (strength <= 25) {
-            strengthMeterFill.style.backgroundColor = '#ff4747';
-            feedback = 'Weak';
-          } else if (strength <= 50) {
-            strengthMeterFill.style.backgroundColor = '#ffa534';
-            feedback = 'Fair';
-          } else if (strength <= 75) {
-            strengthMeterFill.style.backgroundColor = '#ffff00';
-            feedback = 'Good';
-          } else {
-            strengthMeterFill.style.backgroundColor = '#2bd965';
-            feedback = 'Strong';
-          }
-  
-          strengthText.textContent = feedback;
-        } else {
-          passwordStrength.style.display = 'none';
-        }
-      });
-    }
-  
-    // Parallax effect for leaves
-    const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
-  
-    window.addEventListener('mousemove', function(e) {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-  
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-  
-      const centerX = windowWidth / 2;
-      const centerY = windowHeight / 2;
-  
-      const moveX = (mouseX - centerX) / centerX;
-      const moveY = (mouseY - centerY) / centerY;
-  
-      parallaxElements.forEach(element => {
-        const speed = parseFloat(element.getAttribute('data-parallax-speed'));
-        const x = moveX * 30 * speed;
-        const y = moveY * 30 * speed;
-  
-        element.style.transform = `translate(${x}px, ${y}px) scale(1)`;
-      });
-    });
-  
-    // Loading animation for button
-    const form = document.getElementById('registrationForm');
-    const submitButton = document.getElementById('btn');
-  
-    if (form && submitButton) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-  
-        // Add loading class to button
-        submitButton.classList.add('loading');
-  
-        // Simulate form submission (replace with actual AJAX call)
-        setTimeout(() => {
-          // Remove loading class
-          submitButton.classList.remove('loading');
-  
-          // Show confetti effect
-          confetti({
-            particleCount: 200,
-            spread: 100,
-            origin: { x: 0.5, y: 0.5 },
-            colors: ['#eb5808', '#ffffff', '#333333'],
-            shapes: ['circle', 'square'],
-            ticks: 500,
-            disableForReducedMotion: true
-          });
-  
-          // Advanced confetti burst
-          setTimeout(() => {
-            const duration = 3000;
-            const animationEnd = Date.now() + duration;
-            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
-  
-            function randomInRange(min, max) {
-              return Math.random() * (max - min) + min;
-            }
-  
-            const interval = setInterval(function() {
-              const timeLeft = animationEnd - Date.now();
-  
-              if (timeLeft <= 0) {
-                return clearInterval(interval);
-              }
-  
-              const particleCount = 50 * (timeLeft / duration);
-  
-              // Use different random coordinates
-              confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-              });
-              confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-              });
-            }, 250);
-          }, 1000);
-  
-          alert("ACCOUNT HAS BEEN CREATED SUCCESSFULLY");
-        }, 2000);
-      });
-    }
-  
-    // Input field focus effect
-    const inputs = document.querySelectorAll('.input-field');
-  
-    inputs.forEach(input => {
-      input.addEventListener('focus', function() {
-        this.parentElement.classList.add('input-focused');
-      });
-  
-      input.addEventListener('blur', function() {
-        this.parentElement.classList.remove('input-focused');
-      });
-    });
-  
-    // 3D tilt effect for form container
-    const formContainer = document.querySelector('.form-container');
-  
-    if (formContainer) {
-      formContainer.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-  
-        const xPercent = x / rect.width;
-        const yPercent = y / rect.height;
-  
-        const maxRotate = 2; // Maximum rotation in degrees
-        const rotateX = (0.5 - yPercent) * maxRotate;
-        const rotateY = (xPercent - 0.5) * maxRotate;
-  
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-  
-      formContainer.addEventListener('mouseleave', function() {
-        this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-      });
-    }
-  
-    // Typing animation for headings (alternative)
-    function typeEffect(element, speed) {
-      const text = element.innerHTML;
-      element.innerHTML = '';
-  
-      let i = 0;
-      const timer = setInterval(function() {
-        if (i < text.length) {
-          element.append(text.charAt(i));
-          i++;
-        } else {
-          clearInterval(timer);
-        }
-      }, speed);
-    }
-  
-    // Floating elements animation enhancement
-    const floatingElements = document.querySelectorAll('.floating-element');
-  
-    window.addEventListener('mousemove', function(e) {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-  
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-  
-      floatingElements.forEach((element, index) => {
-        const moveX = (mouseX / windowWidth - 0.5) * 20;
-        const moveY = (mouseY / windowHeight - 0.5) * 20;
-  
-        // Add a subtle movement based on mouse position
-        element.style.transform = `translate(${moveX * (index + 1) * 0.1}px, ${moveY * (index + 1) * 0.1}px)`;
-      });
-    });
-  });
-  </script>
-</body>
-</html>
+<script src="script.js"></script>
+    </body>
+    </html>
