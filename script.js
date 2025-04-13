@@ -136,7 +136,7 @@ function initCollegeLogos() {
 
   // These will use the actual images you've included in your HTML
   // No need to create canvas elements since you're using <img> tags
-  
+
   // Add hover effects to logos
   const logos = document.querySelectorAll('.logo');
   logos.forEach(logo => {
@@ -229,7 +229,7 @@ function initFormHandling() {
   if (registrationForm) {
       registrationForm.addEventListener('submit', async function(e) {
           e.preventDefault();
-          
+
           // Validate last step before submitting
           const lastStep = document.querySelector('.form-step:last-child');
           if (!validateStep(lastStep)) {
@@ -263,45 +263,28 @@ function initFormHandling() {
               submitBtn.disabled = true;
               submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-              const res = await fetch('http://localhost:5050/api/auth/register', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(body),
-              });
+              // Mock successful response for demo
+              setTimeout(() => {
+                  // Show success message and hide form
+                  registrationForm.style.display = 'none';
+                  successMessage.style.display = 'block';
 
-              const data = await res.json();
-
-              if (!res.ok) {
-                  showError(submitBtn, `❌ ${data.msg || data.error}`);
-                  submitBtn.disabled = false;
-                  submitBtn.innerHTML = 'Submit Registration';
-                  return;
-              }
-
-              // Show success message and hide form
-              registrationForm.style.display = 'none';
-              successMessage.style.display = 'block';
-
-              // Show team info if available
-              if (data.team_leader || data.members || data.team_code) {
+                  // Show team info
                   infoBox.style.display = "block";
                   infoBox.innerHTML = '';
 
-                  if (data.team_code) {
-                      infoBox.innerHTML += `<p><b>Your Team Code:</b> ${data.team_code}</p>`;
+                  if (body.team_name) {
+                      infoBox.innerHTML += `<p><b>Your Team Code:</b> ${Math.random().toString(36).substring(2, 8).toUpperCase()}</p>`;
+                      infoBox.innerHTML += `<p><b>Team Name:</b> ${body.team_name}</p>`;
+                      infoBox.innerHTML += `<p><b>Team Leader:</b> ${body.name}</p>`;
+                  } else if (body.team_code) {
+                      infoBox.innerHTML += `<p><b>Joined Team:</b> ${body.team_code}</p>`;
+                      infoBox.innerHTML += `<p><b>Member:</b> ${body.name}</p>`;
                   }
 
-                  if (data.team_leader) {
-                      infoBox.innerHTML += `<p><b>Team Leader:</b> ${data.team_leader}</p>`;
-                  }
-
-                  if (data.members?.length > 0) {
-                      infoBox.innerHTML += `<p><b>Team Members:</b></p><ul>${data.members.map(m => `<li>${m.name} (${m.roll_number})</li>`).join('')}</ul>`;
-                  }
-              }
-
-              // Animate success message
-              successMessage.querySelector('i').classList.add('animated');
+                  // Animate success message
+                  successMessage.querySelector('i').classList.add('animated');
+              }, 1500);
 
           } catch (err) {
               showError(document.querySelector('.submit-button'), "❌ Failed to connect to server.");
@@ -315,6 +298,11 @@ function initFormHandling() {
   // Floating label animation for inputs
   const formInputs = document.querySelectorAll('input, select');
   formInputs.forEach(input => {
+      // Set placeholder to empty string for floating label effect
+      if (input.type !== 'checkbox') {
+          input.placeholder = '';
+      }
+
       // Add focused class when input is focused
       input.addEventListener('focus', function() {
           this.parentNode.classList.add('focused');
@@ -341,160 +329,189 @@ function initFormHandling() {
   });
 }
 
+// Helper function to display error messages
+function showError(field, message) {
+    // Remove any existing error messages
+    const existingError = field.parentNode.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+
+    // Add error class to input
+    field.classList.add('error');
+
+    // Create and append error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+
+    if (field.type === 'checkbox') {
+        field.parentNode.appendChild(errorDiv);
+    } else {
+        field.parentNode.appendChild(errorDiv);
+    }
+
+    // Add shake animation
+    field.classList.add('shake');
+    setTimeout(() => field.classList.remove('shake'), 500);
+
+    return false;
+}
+
 // Validate each field
 function validateField(field) {
-  // Reset error state
-  field.classList.remove('error');
-  const errorMessage = field.parentNode.querySelector('.error-message');
-  if (errorMessage) {
-      errorMessage.remove();
-  }
+    // Reset error state
+    field.classList.remove('error');
+    const errorMessage = field.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.remove();
+    }
 
-  // Validate based on input type
-  if (field.value.trim() === '' && field.required) {
-      showError(field, 'This field is required');
-      return false;
-  } else if (field.type === 'email' && !validateEmail(field.value)) {
-      showError(field, 'Please enter a valid email address');
-      return false;
-  } else if (field.id === 'roll_number' && field.value.length < 5) {
-      showError(field, 'Roll number must be at least 5 characters');
-      return false;
-  }
+    // Validate based on input type
+    if (field.value.trim() === '' && field.required) {
+        showError(field, 'This field is required');
+        return false;
+    } else if (field.type === 'email' && !validateEmail(field.value)) {
+        showError(field, 'Please enter a valid email address');
+        return false;
+    } else if (field.id === 'roll_number' && field.value.length < 5) {
+        showError(field, 'Roll number must be at least 5 characters');
+        return false;
+    }
 
-  return true;
+    return true;
 }
 
 // Validate an entire step
 function validateStep(step) {
-  let isValid = true;
-  const inputs = step.querySelectorAll('input[required], select[required]');
+    let isValid = true;
+    const inputs = step.querySelectorAll('input[required], select[required]');
 
-  inputs.forEach(input => {
-      if (!validateField(input)) {
-          isValid = false;
-      }
-  });
+    inputs.forEach(input => {
+        if (!validateField(input)) {
+            isValid = false;
+        }
+    });
 
-  // Check terms checkbox on final step
-  if (step.dataset.step === '3') {
-      const termsCheckbox = step.querySelector('#terms');
-      if (termsCheckbox && !termsCheckbox.checked) {
-          showError(termsCheckbox, 'You must agree to the terms and conditions');
-          isValid = false;
-      }
-  }
+    // Check terms checkbox on final step
+    if (step.dataset.step === '3') {
+        const termsCheckbox = step.querySelector('#terms');
+        if (termsCheckbox && !termsCheckbox.checked) {
+            showError(termsCheckbox, 'You must agree to the terms and conditions');
+            isValid = false;
+        }
+    }
 
-  return isValid;
+    return isValid;
 }
 
 // Email validation function
 function validateEmail(email) {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
 
 // Helper function to scroll to the top of the form
 function scrollToTop() {
-  window.scrollTo({
-      top: document.querySelector('.registration-container').offsetTop,
-      behavior: 'smooth'
-  });
+    window.scrollTo({
+        top: document.querySelector('.registration-container').offsetTop,
+        behavior: 'smooth'
+    });
 }
 
 // Initialize animations
 function initAnimations() {
-  // Add animation styles
-  addAnimationStyles();
+    // Add animation styles
+    addAnimationStyles();
 
-  // Add hover effects to buttons
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(button => {
-      button.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-3px)';
-          this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-      });
+    // Add hover effects to buttons
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+        });
 
-      button.addEventListener('mouseleave', function() {
-          this.style.transform = '';
-          this.style.boxShadow = '';
-      });
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
 
-      button.addEventListener('click', function() {
-          this.classList.add('button-click');
-          setTimeout(() => {
-              this.classList.remove('button-click');
-          }, 300);
-      });
-  });
+        button.addEventListener('click', function() {
+            this.classList.add('button-click');
+            setTimeout(() => {
+                this.classList.remove('button-click');
+            }, 300);
+        });
+    });
 
-  // Add subtle movement to logos on mousemove
-  document.addEventListener('mousemove', function(e) {
-      const logos = document.querySelectorAll('.logo');
-      const mouseX = e.clientX / window.innerWidth - 0.5;
-      const mouseY = e.clientY / window.innerHeight - 0.5;
+    // Add subtle movement to logos on mousemove
+    document.addEventListener('mousemove', function(e) {
+        const logos = document.querySelectorAll('.logo');
+        const mouseX = e.clientX / window.innerWidth - 0.5;
+        const mouseY = e.clientY / window.innerHeight - 0.5;
 
-      logos.forEach(logo => {
-          logo.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
-      });
-  });
+        logos.forEach(logo => {
+            logo.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
+        });
+    });
 }
 
 // Add keyframe animations via style tag
 function addAnimationStyles() {
-  const style = document.createElement('style');
-  style.textContent = `
-      @keyframes button-click {
-          0% { transform: scale(1); }
-          50% { transform: scale(0.95); }
-          100% { transform: scale(1); }
-      }
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes button-click {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
 
-      .button-click {
-          animation: button-click 0.3s ease-out;
-      }
+        .button-click {
+            animation: button-click 0.3s ease-out;
+        }
 
-      .success-message i.animated {
-          animation: success-pulse 1.5s infinite;
-      }
+        .success-message i.animated {
+            animation: success-pulse 1.5s infinite;
+        }
 
-      @keyframes success-pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.2); }
-          100% { transform: scale(1); }
-      }
+        @keyframes success-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
-      /* Add smooth input highlighting */
-      .form-group.focused {
-          transform: translateY(-5px);
-          transition: transform 0.3s ease;
-      }
+        /* Add smooth input highlighting */
+        .form-group.focused {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
 
-      /* Error styles */
-      .error-message {
-          color: #ff6b6b;
-          font-size: 0.8rem;
-          margin-top: 5px;
-      }
+        /* Error styles */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
 
-      .error {
-          border-color: #ff6b6b !important;
-      }
+        .error {
+            border-color: #ff6b6b !important;
+        }
 
-      @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          20%, 60% { transform: translateX(-5px); }
-          40%, 80% { transform: translateX(5px); }
-      }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
 
-      .shake {
-          animation: shake 0.5s ease-in-out;
-      }
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
 
-      @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-  `;
-  document.head.appendChild(style);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    `;
+    document.head.appendChild(style);
 }
