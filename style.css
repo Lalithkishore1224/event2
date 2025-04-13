@@ -507,9 +507,10 @@ body.page-loaded {
 
 .logo.small {
     width: 150px;
-    height: 50px;
+    height: 100px;
 
 }
+
 
 /* ====== Error styling ====== */
 .error-message {
@@ -602,7 +603,15 @@ body.page-loaded {
 
     .logo {
         width: 100px;
-        height: 70px;
+        height: 102px;
+        
+    }
+    #logo1{
+        height: 0px;
+    }
+   .lohomcet img{
+    width: 200px;
+    height: 100px;
     }
 
     .event-title {
